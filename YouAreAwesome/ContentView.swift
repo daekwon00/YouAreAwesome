@@ -16,39 +16,32 @@ struct ContentView: View {
     var body: some View {
 
         VStack {
-            Spacer()
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(radius: 30)
-
             Text(message)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
                 .foregroundStyle(.red)
                 .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.5)
+                .frame(height: 100)
+                .animation(.easeInOut(duration: 0.15), value: message)
+
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(radius: 30)
+                .animation(.default, value: imageName)
 
             Spacer()
 
             Button("Show Message") {
-//                let message1 = "You are Awesome!"
-//                let message2 = "You are Great!"
-//                let message3 = "Fabulous? That's You!"
-//
-//                if message == message1 {
-//                    message = message2
-//                } else if message == message2 {
-//                    message = message3
-//                } else {
-//                    message = message1
-//                }
                 let messages = ["You are Awesome!",
+                                "When the Genius Bar Needs Help, They Call You!",
                                "You are Great!",
                                "You Are Fantastic!",
                                "Fabulous? That's You!",
-                                "You Make Me Smile!",
-                                "When the Genius Bar Needs Help, They Call You!"]
+                                "You Make Me Smile!"
+                                ]
 
                 message = messages[messageNumber]
                 messageNumber += 1
