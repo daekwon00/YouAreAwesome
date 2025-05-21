@@ -47,8 +47,10 @@ struct ContentView: View {
                 Toggle("", isOn: $soundIsOn)
                     .labelsHidden()
                     .onChange(of: soundIsOn) {
-                        if audioPlayer.isPlaying {
-                            audioPlayer.stop()
+                        if audioPlayer != nil {
+                            if audioPlayer.isPlaying {
+                                audioPlayer.stop()
+                            }
                         }
                     }
 
@@ -62,16 +64,13 @@ struct ContentView: View {
                                     "Fabulous? That's You!",
                                     "You Make Me Smile!"]
 
-                    lastMessageNumber = nonRepeatingRandom(lastNumber: lastMessageNumber,
-                                                           upperBound: messages.count-1)
+                    lastMessageNumber = nonRepeatingRandom(lastNumber: lastMessageNumber, upperBound: messages.count-1)
                     message = messages[lastMessageNumber]
 
-                    lastImageNumber = nonRepeatingRandom(lastNumber: lastImageNumber,
-                                                         upperBound: numberOfImages-1)
+                    lastImageNumber = nonRepeatingRandom(lastNumber: lastImageNumber, upperBound: numberOfImages-1)
                     imageName = "image\(lastImageNumber)"
 
-                    lastSoundNumber = nonRepeatingRandom(lastNumber: lastSoundNumber,
-                                                         upperBound: numberOfSounds-1)
+                    lastSoundNumber = nonRepeatingRandom(lastNumber: lastSoundNumber, upperBound: numberOfSounds-1)
                     if soundIsOn {
                         playSound(soundName: "sound\(lastSoundNumber)")
                     }
